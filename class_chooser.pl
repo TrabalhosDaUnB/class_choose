@@ -5,6 +5,29 @@ eh_classe(arqueiro) :- atributos(inteligencia, destreza).
 eh_classe(mago) :- atributos(inteligencia, vitalidade).
 eh_classe(assassino) :- atributos(destreza, destreza).
 
+%build_cavaleiro
+eh_build(defensor) :- eh_classe(cavaleiro), build(defesa).
+eh_build(da_velocidade) :- eh_classe(cavaleiro), build(agilidade).
+eh_build(paladino) :- eh_classe(cavaleiro), build(talento).
+%build_guerreiro
+eh_build(protetor) :- eh_classe(guerreiro), build(defesa).
+eh_build(destruidor) :- eh_classe(guerreiro), build(agilidade).
+eh_build(berseker) :- eh_classe(guerreiro), build(talento).
+
+%build_arqueiro
+eh_build(assassino) :- eh_classe(arqueiro), build(defesa).
+eh_build(veloz) :- eh_classe(arqueiro), build(agilidade).
+eh_build(arcano) :- eh_classe(arqueiro), build(talento).
+
+%build_mago
+eh_build(patrono) :- eh_classe(mago), build(defesa).
+eh_build(elemental) :- eh_classe(mago), build(agilidade).
+eh_build(sabio) :- eh_classe(mago), build(talento).
+
+%build_assassino
+eh_build(de_ferro) :- eh_classe(assassino), build(defesa).
+eh_build(das_sombras) :- eh_classe(assassino), build(agilidade).
+eh_build(oculto) :- eh_classe(assassino), build(talento).
 
 iniciar :- repeat,
     write("=======Seletor_de_Classe======="), nl,
@@ -44,7 +67,20 @@ pergunta_2(X) :-
     read(Y),
     opc_pergunta_2(X,Y).
 
-opc_pergunta_2(X,1) :- assert(atributos(X,vitalidade)), eh_classe(Classe), nl, write("Parabéns voce eh um incrivel "), write(Classe),nl.
-opc_pergunta_2(X,2) :- assert(atributos(X,destreza)), eh_classe(Classe), nl, write("Parabéns voce eh um incrivel "), write(Classe),nl.
-opc_pergunta_2(X,3) :- assert(atributos(X,vitalidade)), eh_classe(Classe), nl, write("Parabéns voce eh um incrivel "), write(Classe),nl.
-opc_pergunta_2(X,4) :- assert(atributos(X,destreza)), eh_classe(Classe), nl, write("Parabéns voce eh um incrivel "), write(Classe),nl.
+opc_pergunta_2(X,1) :- assert(atributos(X,vitalidade)), nl, pergunta_build.
+opc_pergunta_2(X,2) :- assert(atributos(X,destreza)), nl, pergunta_build.
+opc_pergunta_2(X,3) :- assert(atributos(X,vitalidade)), nl, pergunta_build.
+opc_pergunta_2(X,4) :- assert(atributos(X,destreza)), nl, pergunta_build.
+
+pergunta_build :-
+    write("=======Seletor_de_Especializacao======="), nl,
+    write("Vosso amor se encontra em perigo no mundo da VidaSocial. O que voce como um dos integrantes da Orda da Sociedade Oculta de SofWar faz?"), nl,
+    write("1. Seu amor nunca esta em perigo pois voce esta com ele."), nl,
+    write("2. Sem que seu amor perceba o perigo ele eh destruido."), nl,
+    write("3. Voce se reune com a Orda da Sociedade de SofWar e lidera um ataque contra o perigo."), nl,
+    read(X),
+    opc_build(X).
+
+opc_build(1) :- assert(build(defesa)), nl, eh_classe(X), eh_build(Y), write("Parabens voce eh um incrivel "), write(X), write(" "), write(Y), nl.
+opc_build(2) :- assert(build(agilidade)), nl, eh_classe(X), eh_build(Y), write("Parabens voce eh um incrivel "), write(X), write(" "), write(Y), nl.
+opc_build(3) :- assert(build(talento)), nl, eh_classe(X), eh_build(Y), write("Parabens voce eh um incrivel "), write(X), write(" "), write(Y), nl.
