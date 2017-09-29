@@ -1,16 +1,10 @@
-
-%forca combinado a destreza
-atributos(forca, destreza).
-atributos(forca, vitalidade).
-atributos(inteligencia, destreza).
-atributos(inteligencia, vitalidade).
-atributos(destreza, destreza).
-
+%classes
 eh_classe(cavaleiro) :- atributos(forca, destreza).
 eh_classe(guerreiro) :- atributos(forca, vitalidade).
 eh_classe(arqueiro) :- atributos(inteligencia, destreza).
 eh_classe(mago) :- atributos(inteligencia, vitalidade).
 eh_classe(assassino) :- atributos(destreza, destreza).
+
 
 iniciar :- repeat,
     write("=======Seletor_de_Classe======="), nl,
@@ -50,7 +44,7 @@ pergunta_2(X) :-
     read(Y),
     opc_pergunta_2(X,Y).
 
-opc_pergunta_2(X,1) :- write(atributos(X,vitalidade)), nl.
-opc_pergunta_2(X,2) :- write(atributos(X,destreza)), nl.
-opc_pergunta_2(X,3) :- write(atributos(X,vitalidade)), nl.
-opc_pergunta_2(X,4) :- write(atributos(X,destreza)), nl.
+opc_pergunta_2(X,1) :- assert(atributos(X,vitalidade)), eh_classe(Classe), nl, write("Parabéns voce eh um incrivel "), write(Classe),nl.
+opc_pergunta_2(X,2) :- assert(atributos(X,destreza)), eh_classe(Classe), nl, write("Parabéns voce eh um incrivel "), write(Classe),nl.
+opc_pergunta_2(X,3) :- assert(atributos(X,vitalidade)), eh_classe(Classe), nl, write("Parabéns voce eh um incrivel "), write(Classe),nl.
+opc_pergunta_2(X,4) :- assert(atributos(X,destreza)), eh_classe(Classe), nl, write("Parabéns voce eh um incrivel "), write(Classe),nl.
