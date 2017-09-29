@@ -24,7 +24,7 @@ eh_build(arcano) :- eh_classe(arqueiro), build(talento).
 %build_mago------------------------------------------------
 eh_build(patrono) :- eh_classe(mago), build(defesa).
 eh_build(elemental) :- eh_classe(mago), build(agilidade).
-eh_build(sabio) :- eh_classe(mago), build(talento).
+eh_build(anciao) :- eh_classe(mago), build(talento).
 
 %build_assassino-------------------------------------------
 eh_build(de_ferro) :- eh_classe(assassino), build(defesa).
@@ -40,8 +40,7 @@ eh_equipamento(espada_de_duas_maos, armadura_leve) :- eh_classe(cavaleiro), eh_b
 eh_equipamento(espada_e_cristal_do_poder, armadura_pesada) :- eh_classe(cavaleiro), eh_build(paladino), arma(defensor).
 eh_equipamento(espada_e_adaga_mistica, armadura_leve) :- eh_classe(cavaleiro), eh_build(paladino), arma(defensor).
 
-
-%armas guerreiro------------------------------
+%armas guerreiro-----------------------------------------
 eh_equipamento(machado_e_escudo, armadura_pesada) :- eh_classe(guerreiro), eh_build(protetor), arma(defensor).
 eh_equipamento(machado_de_duas_maos, armadura_pesada) :- eh_classe(guerreiro), eh_build(protetor), arma(atacante).
 eh_equipamento(machado_e_escudo, armadura_leve) :- eh_classe(guerreiro), eh_build(destruidor), arma(defensor).
@@ -49,11 +48,29 @@ eh_equipamento(machado_de_duas_maos, armadura_pesada) :- eh_classe(guerreiro), e
 eh_equipamento(machado_e_martelo_de_guerra, armadura_pesada) :- eh_classe(guerreiro), eh_build(berseker), arma(defensor).
 eh_equipamento(grande_machado_de_duas_maos, sem_armadura) :- eh_classe(guerreiro), eh_build(berseker), arma(atacante).
 
-%armas mago
+%armas arqueiro------------------------------------------
+eh_equipamento(arco_leve_e_adaga, traje_de_couro) :- eh_classe(arqueiro), eh_build(assassino), arma(defensor).
+eh_equipamento(besta, traje_de_couro) :- eh_classe(arqueiro), eh_build(assassino), arma(atacante).
+eh_equipamento(arco_reforcado, traje_de_couro) :- eh_classe(arqueiro), eh_build(veloz), arma(defensor).
+eh_equipamento(arco_duplo, traje_de_seda) :- eh_classe(arqueiro), eh_build(veloz), arma(atacante).
+eh_equipamento(arco_de_cristal, cota_de_malha) :- eh_classe(arqueiro), eh_build(arcano), arma(defensor).
+eh_equipamento(besta_de_cristal, cota_de_malha) :- eh_classe(arqueiro), eh_build(arcano), arma(atacante).
 
-%armas assassino
+%armas mago----------------------------------------------
+eh_equipamento(cajado_de_cedro,manto_pesado) :- eh_classe(mago), eh_build(patrono), arma(defensor).
+eh_equipamento(varinha_de_carvalho, manto_pesado) :- eh_classe(mago), eh_build(patrono), arma(atacante).
+eh_equipamento(cajado_de_pedra, manto_de_mil_folhas) :- eh_classe(mago), eh_build(elemental), arma(defensor).
+eh_equipamento(varinha_de_ferro, manto_de_mil_folhas) :- eh_classe(mago), eh_build(elemental), arma(atacante).
+eh_equipamento(cajado_de_cristal, manto_de_luz) :- eh_classe(mago), eh_build(anciao), arma(defensor).
+eh_equipamento(cajado_de_cristal, manto_de_sombra) :- eh_classe(mago), eh_build(anciao), arma(atacante).
 
-
+%armas assassino-------------------------------------------
+eh_equipamento(lanca_e_adagas, cota_de_malha) :- eh_classe(assassino), eh_build(de_ferro), arma(defensor).
+eh_equipamento(espada_e_adaga, cota_de_malha) :- eh_classe(assassino), eh_build(de_ferro), arma(atacante).
+eh_equipamento(katana_e_adaga, traje_de_seda_escura) :- eh_classe(assassino), eh_build(das_sombras), arma(defensor).
+eh_equipamento(adagas_nas_duas_maos, traje_de_seda_escura) :- eh_classe(assassino), eh_build(das_sombras), arma(atacante).
+eh_equipamento(adagas_e_zarabatana, manto_de_sombra) :- eh_classe(assassino), eh_build(oculto), arma(defensor).
+eh_equipamento(lanca_envenenada, manto_de_sombra) :- eh_classe(assassino), eh_build(oculto), arma(atacante).
 
 
 iniciar :- repeat,
