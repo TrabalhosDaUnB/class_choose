@@ -1,39 +1,67 @@
-%classes
+%------------------classes------------------------------
 eh_classe(cavaleiro) :- atributos(forca, destreza).
 eh_classe(guerreiro) :- atributos(forca, vitalidade).
 eh_classe(arqueiro) :- atributos(inteligencia, destreza).
 eh_classe(mago) :- atributos(inteligencia, vitalidade).
 eh_classe(assassino) :- atributos(destreza, destreza).
 
-%build_cavaleiro
+
+%build_cavaleiro------------------------------------------
 eh_build(defensor) :- eh_classe(cavaleiro), build(defesa).
 eh_build(da_velocidade) :- eh_classe(cavaleiro), build(agilidade).
 eh_build(paladino) :- eh_classe(cavaleiro), build(talento).
-%build_guerreiro
+
+%build_guerreiro-----------------------------------------
 eh_build(protetor) :- eh_classe(guerreiro), build(defesa).
 eh_build(destruidor) :- eh_classe(guerreiro), build(agilidade).
 eh_build(berseker) :- eh_classe(guerreiro), build(talento).
 
-%build_arqueiro
+%build_arqueiro---------------------------------------------
 eh_build(assassino) :- eh_classe(arqueiro), build(defesa).
 eh_build(veloz) :- eh_classe(arqueiro), build(agilidade).
 eh_build(arcano) :- eh_classe(arqueiro), build(talento).
 
-%build_mago
+%build_mago------------------------------------------------
 eh_build(patrono) :- eh_classe(mago), build(defesa).
 eh_build(elemental) :- eh_classe(mago), build(agilidade).
 eh_build(sabio) :- eh_classe(mago), build(talento).
 
-%build_assassino
+%build_assassino-------------------------------------------
 eh_build(de_ferro) :- eh_classe(assassino), build(defesa).
 eh_build(das_sombras) :- eh_classe(assassino), build(agilidade).
 eh_build(oculto) :- eh_classe(assassino), build(talento).
 
+
+%armas_cavaleiro----------------------------------------
+eh_equipamento(espada_e_escudo, armadura_pesada) :- eh_classe(cavaleiro), eh_build(defensor), arma(defensor).
+eh_equipamento(espada_de_duas_maos, armadura_pesada) :- eh_classe(cavaleiro), eh_build(defensor), arma(atacante).
+eh_equipamento(espada_e_katana, armadura_leve) :- eh_classe(cavaleiro), eh_build(da_velocidade), arma(defensor).
+eh_equipamento(espada_de_duas_maos, armadura_leve) :- eh_classe(cavaleiro), eh_build(da_velocidade), arma(atacante).
+eh_equipamento(espada_e_cristal_do_poder, armadura_pesada) :- eh_classe(cavaleiro), eh_build(paladino), arma(defensor).
+eh_equipamento(espada_e_adaga_mistica, armadura_leve) :- eh_classe(cavaleiro), eh_build(paladino), arma(defensor).
+
+
+%armas guerreiro------------------------------
+eh_equipamento(machado_e_escudo, armadura_pesada) :- eh_classe(guerreiro), eh_build(protetor), arma(defensor).
+eh_equipamento(machado_de_duas_maos, armadura_pesada) :- eh_classe(guerreiro), eh_build(protetor), arma(atacante).
+eh_equipamento(machado_e_escudo, armadura_leve) :- eh_classe(guerreiro), eh_build(destruidor), arma(defensor).
+eh_equipamento(machado_de_duas_maos, armadura_pesada) :- eh_classe(guerreiro), eh_build(destruidor), arma(atacante).
+eh_equipamento(machado_e_martelo_de_guerra, armadura_pesada) :- eh_classe(guerreiro), eh_build(berseker), arma(defensor).
+eh_equipamento(grande_machado_de_duas_maos, sem_armadura) :- eh_classe(guerreiro), eh_build(berseker), arma(atacante).
+
+%armas mago
+
+%armas assassino
+
+
+
+
 iniciar :- repeat,
-    write("=======Seletor_de_Classe======="), nl,
+    write("============Seletor_de_Classe==========="), nl,
     write("1. Vamos iniciar!"), nl,
     write("2. Me tire daqui!"), nl,
     read(X),
+    write("========================================"), nl,
     opcao(X),
     X==2, !.
 
@@ -41,13 +69,14 @@ opcao(2) :- !.
 opcao(1) :- pergunta_1.
 
 pergunta_1 :-
-    write("=======Seletor_de_Classe======="), nl,
+    write("============Seletor_de_Classe==========="), nl,
     write("Voce estava viajando pelas terras de Javalovisk e encontrou um Dragon NullPointerException. Então você:"), nl,
     write("1. Com muito odio explode a terra de Javalovisk com o poder da mente"), nl,
     write("2. Com as proprias maos destroi o Dragon NullPointerException"), nl,
     write("3. Se acalma e telepaticamente entra em contato com o mago StackOverflow que te encontra a solucao"), nl,
     write("4. Voce utiliza uma habilidade especial e reduz o Dragon a cinzas"), nl,
     write("5. O Dragon nao apareceria para voce pois voce nao anda em Javalovisk."), nl,
+    write("========================================"), nl,
     read(X),
     opc_pergunta_1(X).
 
@@ -58,12 +87,13 @@ opc_pergunta_1(4) :- pergunta_2(forca).
 opc_pergunta_1(5) :- pergunta_2(destreza).
 
 pergunta_2(X) :-
-    write("=======Seletor_de_Classe======="), nl,
+    write("============Seletor_de_Classe==========="), nl,
     write("Voce encontrou o livro do mage ByShaQui e ao tentar fazer um feitico voce evocou o gnomo BahIhDu e ele invade seu computador! O que voce faz?"), nl,
     write("1. Converso com ele até me acostumar com sua presenca"), nl,
     write("2. Uso minhas habilidades especiais de sobrinho formatador de pc da familia e detono o gnomo"), nl,
     write("3. Meu pc é sinistro um gnomo a mais outro a menos não faz diferenca."), nl,
     write("4. Nao aconteceria pois voce sabe que o livro de ByShaQui eh escuro e cheio de horrores!"), nl,
+    write("========================================"), nl,
     read(Y),
     opc_pergunta_2(X,Y).
 
@@ -73,7 +103,7 @@ opc_pergunta_2(X,3) :- assert(atributos(X,vitalidade)), nl, pergunta_build.
 opc_pergunta_2(X,4) :- assert(atributos(X,destreza)), nl, pergunta_build.
 
 pergunta_build :-
-    write("=======Seletor_de_Especializacao======="), nl,
+    write("========Seletor_de_Especializacao======="), nl,
     write("Vosso amor se encontra em perigo no mundo da VidaSocial. O que voce como um dos integrantes da Orda da Sociedade Oculta de SofWar faz?"), nl,
     write("1. Seu amor nunca esta em perigo pois voce esta com ele."), nl,
     write("2. Sem que seu amor perceba o perigo ele eh destruido."), nl,
