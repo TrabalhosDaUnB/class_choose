@@ -227,7 +227,7 @@ pergunta_formato :-
   write("==========Seletor_de_Formato============"), nl,
   write("Voce gostaria de sua historia escrita em um arquivo ou apenas printada na tela"), nl,
   write("Por gentileza escolha entre esses dois formatos"), nl,
-  write("1. tela"), nl,
+  write("1. Tela"), nl,
   write("2. Arquivo Texto"), nl,
   read(X),
   write("========================================"), nl,
