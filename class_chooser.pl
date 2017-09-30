@@ -1,10 +1,7 @@
-:- dynamic positive/1.
-:- dynamic negative/1.
 :- dynamic clearBase/1.
 :- dynamic clearBase1/1.
 clearBase(X):- clearBase1(X), fail.
 clearBase(X).
-
 clearBase1(X):- retract(X).
 clearBase1(X).
 
@@ -67,7 +64,7 @@ eh_equipamento(cajado_de_cristal, manto_de_luz) :- eh_classe(mago), eh_build(anc
 eh_equipamento(cajado_de_cristal, manto_de_sombra) :- eh_classe(mago), eh_build(anciao), arma(atacante).
 
 
-iniciar :- repeat,clearBase(positive()),
+iniciar :- repeat,clearBase(eh_classe(eh_build,eh_equipamento)),
     write("============Seletor_de_Classe==========="), nl,
     write("1. Vamos iniciar!"), nl,
     write("2. Me tire daqui!"), nl,
