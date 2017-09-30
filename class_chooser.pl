@@ -1,3 +1,13 @@
+:- dynamic positive/1.
+:- dynamic negative/1.
+:- dynamic clearBase/1.
+:- dynamic clearBase1/1.
+clearBase(X):- clearBase1(X), fail.
+clearBase(X).
+
+clearBase1(X):- retract(X).
+clearBase1(X).
+
 %------------------classes------------------------------
 eh_classe(cavaleiro) :- atributos(forca, destreza).
 eh_classe(guerreiro) :- atributos(forca, vitalidade).
@@ -73,7 +83,7 @@ eh_equipamento(adagas_e_zarabatana, manto_de_sombra) :- eh_classe(assassino), eh
 eh_equipamento(lanca_envenenada, manto_de_sombra) :- eh_classe(assassino), eh_build(oculto), arma(atacante).
 
 
-iniciar :- repeat,
+iniciar :- repeat,clearBase(positive()),
     write("============Seletor_de_Classe==========="), nl,
     write("1. Vamos iniciar!"), nl,
     write("2. Me tire daqui!"), nl,
