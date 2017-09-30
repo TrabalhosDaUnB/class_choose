@@ -135,5 +135,101 @@ pergunta_equip :-
     write("========================================"), nl,
     opc_equip(X).
 
-opc_equip(1) :- assert(arma(defensor)), nl, eh_classe(X), eh_build(Y), eh_equipamento(W,Z), write("Parabens voce eh um incrivel "), write(X), write(" "), write(Y), write(" e utiliza os equipamentos "), write(W), write(" e ") , write(Z), nl.
-opc_equip(2) :- assert(arma(atacante)), nl, eh_classe(X), eh_build(Y), eh_equipamento(W,Z), write("Parabens voce eh um incrivel "), write(X), write(" "), write(Y), write(" e utiliza os equipamentos "), write(W), write(" e ") , write(Z), nl.
+opc_equip(1) :- assert(arma(defensor)), pergunta_dia, nl.
+opc_equip(2) :- assert(arma(atacante)), pergunta_dia, nl.
+
+pergunta_dia :-
+    write("==========Seletor_de_Historia============"), nl,
+    write("Por gentileza escolha um dia de 1 a 31"), nl,
+    read(X),
+    write("========================================"), nl,
+    opc_dia(X).
+
+opc_dia(1) :- assert(dia(as_Respostas_do_Universo)), pergunta_mes, nl.
+opc_dia(2) :- assert(dia(o_Diploma_Escondido)), pergunta_mes, nl.
+opc_dia(3) :- assert(dia(a_Formatura_Esperada)), pergunta_mes, nl.
+opc_dia(4) :- assert(dia(o_Tesouro_do_Dragao)), pergunta_mes, nl.
+opc_dia(5) :- assert(dia(o_Cristal_da_Sabedoria)), pergunta_mes, nl.
+opc_dia(6) :- assert(dia(a_Princesa_Perdida)), pergunta_mes, nl.
+opc_dia(7) :- assert(dia(o_Principe_Perdido)), pergunta_mes, nl.
+opc_dia(8) :- assert(dia(a_Coroa_de_Javalovisk)), pergunta_mes, nl.
+opc_dia(9) :- assert(dia(a_Arma_Dourada_de_Seh)), pergunta_mes, nl.
+opc_dia(10) :- assert(dia(o_Navio_Naufragado_de_Rubi)), pergunta_mes, nl.
+opc_dia(11) :- assert(dia(o_Calice_de_Gelo)), pergunta_mes, nl.
+opc_dia(12) :- assert(dia(a_Armada_Proibida)), pergunta_mes, nl.
+opc_dia(13) :- assert(dia(o_Poder_de_Javalovisk)), pergunta_mes, nl.
+opc_dia(14) :- assert(dia(o_Esqueleto_do_Tita)), pergunta_mes, nl.
+opc_dia(15) :- assert(dia(a_Armadura_do_Mago_Guerreiro)), pergunta_mes, nl.
+opc_dia(16) :- assert(dia(o_Traje_do_Sabio_Guerreiro)), pergunta_mes, nl.
+opc_dia(17) :- assert(dia(o_Cajado_de_Merlin)), pergunta_mes, nl.
+opc_dia(18) :- assert(dia(o_Arco_Proibido)), pergunta_mes, nl.
+opc_dia(19) :- assert(dia(a_Espada_Inicial)), pergunta_mes, nl.
+opc_dia(20) :- assert(dia(a_Varinha_de_Cedro_Negro)), pergunta_mes, nl.
+opc_dia(21) :- assert(dia(a_Caixa_de_Pandora)), pergunta_mes, nl.
+opc_dia(22) :- assert(dia(a_Tavola_Triangular)), pergunta_mes, nl.
+opc_dia(23) :- assert(dia(a_Fonte_da_Vida)), pergunta_mes, nl.
+opc_dia(24) :- assert(dia(a_Fonte_da_Sabedoria)), pergunta_mes, nl.
+opc_dia(25) :- assert(dia(as_Armaduras_Sagradas)), pergunta_mes, nl.
+opc_dia(26) :- assert(dia(a_Fonte_da_Juventude)), pergunta_mes, nl.
+opc_dia(27) :- assert(dia(o_Talisma_do_Tempo)), pergunta_mes, nl.
+opc_dia(28) :- assert(dia(o_Orbe_da_Destreza)), pergunta_mes, nl.
+opc_dia(29) :- assert(dia(o_Berrante_dos_Gigantes)), pergunta_mes, nl.
+opc_dia(30) :- assert(dia(a_Katana_do_Destino)), pergunta_mes, nl.
+opc_dia(31) :- assert(dia(o_Machado_Anciao_de_Assis)), pergunta_mes, nl.
+
+pergunta_mes :-
+    write("==========Seletor_de_Historia============"), nl,
+    write("Por gentileza escolha um mes de 1 a 12"), nl,
+    read(X),
+    write("========================================"), nl,
+    opc_mes(X).
+
+opc_mes(1) :- assert(mes(a_Aldeia_das_Montanhas)), pergunta_cor, nl.
+opc_mes(2) :- assert(mes(a_Aldeia_da_Borda_do_Vulcao)), pergunta_cor, nl.
+opc_mes(3) :- assert(mes(as_Ilhas_de_Pedra)), pergunta_cor, nl.
+opc_mes(4) :- assert(mes(a_Vila_Flutuante_de_Jasmin)), pergunta_cor, nl.
+opc_mes(5) :- assert(mes(a_Costa_do_Dragao_Voador)), pergunta_cor, nl.
+opc_mes(6) :- assert(mes(a_Cidade_da_Nevoa)), pergunta_cor, nl.
+opc_mes(7) :- assert(mes(a_Floresta_Oculta_do_Rio_de_Rubi)), pergunta_cor, nl.
+opc_mes(8) :- assert(mes(o_Castelo_das_Mil_Torres)), pergunta_cor, nl.
+opc_mes(9) :- assert(mes(a_Capital_do_Ferro_Vermelho)), pergunta_cor, nl.
+opc_mes(10) :- assert(mes(o_Nascer_do_Tita)), pergunta_cor, nl.
+opc_mes(11) :- assert(mes(o_Castelo_da_Sabedoria)), pergunta_cor, nl.
+opc_mes(12) :- assert(mes(a_Fortaleza_de_Esmeralda)), pergunta_cor, nl.
+
+pergunta_cor :-
+    write("==========Seletor_de_Historia============"), nl,
+    write("Por gentileza escolha uma destas cores"), nl,
+    write("1. branco"), nl,
+    write("2. preto"), nl,
+    write("3. vermelho"), nl,
+    write("4. azul"), nl,
+    write("5. amarelo"), nl,
+    write("6. verde"), nl,
+    read(X),
+    write("========================================"), nl,
+    opc_cor(X).
+
+opc_cor(1) :- assert(cor(a_Rainha_Corrompida)), pergunta_nome, nl.
+opc_cor(2) :- assert(cor(a_Assassina_de_Javalovisk)), pergunta_nome, nl.
+opc_cor(3) :- assert(cor(o_Traidor_dos_Mares_de_Cristal)), pergunta_nome, nl.
+opc_cor(4) :- assert(cor(o_Cavaleiro_sem_Honra)), pergunta_nome, nl.
+opc_cor(5) :- assert(cor(o_Rei_dos_Gigantes)), pergunta_nome, nl.
+opc_cor(6) :- assert(cor(o_Gnomo_Corrompido)), pergunta_nome, nl.
+
+pergunta_nome :-
+    write("==========Seletor_de_Historia============"), nl,
+    write("Por fim forneca seu nickname entre aspas duplas:"), nl,
+    read(X),
+    write("========================================"), nl,
+    opc_nome(X).
+
+opc_nome(X) :- assert(nome(X)), conta_historia, nl.
+
+conta_historia :- eh_classe(Classe), eh_build(Build), eh_equipamento(EquipA, EquipB), dia(Dia), mes(Mes), cor(Cor), nome(Nome),
+    write("Esta eh a breve historia da vida de "), write(Nome), write(" o(a) "), write(Classe), write(" "), write(Build), write(": \n"),
+    write(Nome), write(" vivia em um pacato local chamado "), write(Mes), write(".\nViveu como uma pessoa comum durante uma boa parte de sua vida. Entretanto em um certo dia "),
+    write(Mes), write(" recebeu um poderoso ataque e acabou em ruinas. Tempos depois descobriu-se que o ataque veio d"), write(Cor), write("\nDesde entao "),
+    write(Nome), write(" passou a treinar buscando ingressar na Sociedade Oculta de SofWar!\n"), write("Sua missao inicial eh buscar "), write(Dia), write(" para trazer mais poder a SofWar e enfim destruir "),
+    write(Cor), write(".\n"), write("Seus equipamentos sao: "), write(EquipA), write(" e "), write(EquipB), write("!\n Boa sorte!"), nl.
+
