@@ -40,7 +40,7 @@ eh_equipamento(espada_de_duas_maos, armadura_pesada) :- eh_classe(cavaleiro), eh
 eh_equipamento(espada_e_katana, armadura_leve) :- eh_classe(cavaleiro), eh_build(da_velocidade), arma(defensor).
 eh_equipamento(espada_de_duas_maos, armadura_leve) :- eh_classe(cavaleiro), eh_build(da_velocidade), arma(atacante).
 eh_equipamento(espada_e_cristal_do_poder, armadura_pesada) :- eh_classe(cavaleiro), eh_build(paladino), arma(defensor).
-eh_equipamento(espada_e_adaga_mistica, armadura_leve) :- eh_classe(cavaleiro), eh_build(paladino), arma(defensor).
+eh_equipamento(espada_e_adaga_mistica, armadura_leve) :- eh_classe(cavaleiro), eh_build(paladino), arma(atacante).
 
 %armas guerreiro-----------------------------------------
 eh_equipamento(machado_e_escudo, armadura_pesada) :- eh_classe(guerreiro), eh_build(protetor), arma(defensor).
@@ -86,8 +86,8 @@ pergunta_1 :-
     write("2. Com as proprias maos destroi o Dragon NullPointerException"), nl,
     write("3. Se acalma e telepaticamente entra em contato com o mago StackOverflow que te encontra a solucao"), nl,
     write("4. Voce utiliza uma habilidade especial e reduz o Dragon a cinzas"), nl,
-    write("========================================"), nl,
     read(X),
+    write("========================================"), nl,
     opc_pergunta_1(X).
 
 opc_pergunta_1(1) :- pergunta_2(inteligencia).
@@ -104,6 +104,7 @@ pergunta_2(X) :-
     write("4. Nao aconteceria pois voce sabe que o livro de ByShaQui eh escuro e cheio de horrores!"), nl,
     write("========================================"), nl,
     read(Y),
+    write("========================================"), nl,
     opc_pergunta_2(X,Y).
 
 opc_pergunta_2(X,1) :- assert(atributos(X,vitalidade)), nl, pergunta_build.
@@ -118,6 +119,7 @@ pergunta_build :-
     write("2. Sem que seu amor perceba o perigo ele eh destruido."), nl,
     write("3. Voce se reune com a Orda da Sociedade de SofWar e lidera um ataque contra o perigo."), nl,
     read(X),
+    write("========================================"), nl,
     opc_build(X).
 
 opc_build(1) :- assert(build(defesa)), pergunta_equip, nl.
@@ -130,6 +132,7 @@ pergunta_equip :-
     write("1. agua, gelo e terra"), nl,
     write("2. fogo, vento e ferro"), nl,
     read(X),
+    write("========================================"), nl,
     opc_equip(X).
 
 opc_equip(1) :- assert(arma(defensor)), nl, eh_classe(X), eh_build(Y), eh_equipamento(W,Z), write("Parabens voce eh um incrivel "), write(X), write(" "), write(Y), write(" e utiliza os equipamentos "), write(W), write(" e ") , write(Z), nl.
