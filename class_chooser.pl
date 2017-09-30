@@ -221,7 +221,22 @@ pergunta_nome :-
     write("========================================"), nl,
     opc_nome(X).
 
-opc_nome(X) :- assert(nome(X)), conta_historia, nl.
+    opc_nome(X) :- assert(nome(X)), pergunta_formato, nl.
+
+pergunta_formato :-
+  write("==========Seletor_de_Formato============"), nl,
+  write("Voce gostaria de sua historia escrita em um arquivo ou apenas printada na tela"), nl,
+  write("Por gentileza escolha entre esses dois formatos"), nl,
+  write("1. tela"), nl,
+  write("2. Arquivo Texto"), nl,
+  read(X),
+  write("========================================"), nl,
+  opc_formato(X).
+
+opc_formato(1) :- assert(formato(X)), conta_historia, nl.
+opc_formato(2) :-fcreate(arq,'\.saida.pl').
+yes.
+
 
 conta_historia :- eh_classe(Classe), eh_build(Build), eh_equipamento(EquipA, EquipB), dia(Dia), mes(Mes), cor(Cor), nome(Nome),
     write("\n\nEsta eh a breve historia da vida de "), write(Nome), write(" o "), write(Classe), write(" "), write(Build), write(": \n\n"),
@@ -229,4 +244,3 @@ conta_historia :- eh_classe(Classe), eh_build(Build), eh_equipamento(EquipA, Equ
     write(Mes), write(" recebeu um poderoso ataque e acabou em ruinas.\nTempos depois descobriu-se que o ataque veio d"), write(Cor), write(".\nDesde entao "),
     write(Nome), write(" passou a treinar buscando ingressar na Sociedade Oculta de SofWar!\n"), write("Sua missao inicial eh buscar "), write(Dia), write(" para trazer mais poder a SofWar e enfim destruir "),
     write(Cor), write(".\n"), write("Seus equipamentos sao: "), write(EquipA), write(" e "), write(EquipB), write("!\n\n\t\tBoa sorte!"), nl.
-
