@@ -3,8 +3,6 @@ eh_classe(cavaleiro) :- atributos(forca, destreza).
 eh_classe(guerreiro) :- atributos(forca, vitalidade).
 eh_classe(arqueiro) :- atributos(inteligencia, destreza).
 eh_classe(mago) :- atributos(inteligencia, vitalidade).
-eh_classe(assassino) :- atributos(destreza, destreza).
-
 
 %build_cavaleiro------------------------------------------
 eh_build(defensor) :- eh_classe(cavaleiro), build(defesa).
@@ -25,12 +23,6 @@ eh_build(arcano) :- eh_classe(arqueiro), build(talento).
 eh_build(patrono) :- eh_classe(mago), build(defesa).
 eh_build(elemental) :- eh_classe(mago), build(agilidade).
 eh_build(anciao) :- eh_classe(mago), build(talento).
-
-%build_assassino-------------------------------------------
-eh_build(de_ferro) :- eh_classe(assassino), build(defesa).
-eh_build(das_sombras) :- eh_classe(assassino), build(agilidade).
-eh_build(oculto) :- eh_classe(assassino), build(talento).
-
 
 %armas_cavaleiro----------------------------------------
 eh_equipamento(espada_e_escudo, armadura_pesada) :- eh_classe(cavaleiro), eh_build(defensor), arma(defensor).
@@ -64,14 +56,6 @@ eh_equipamento(varinha_de_ferro, manto_de_mil_folhas) :- eh_classe(mago), eh_bui
 eh_equipamento(cajado_de_cristal, manto_de_luz) :- eh_classe(mago), eh_build(anciao), arma(defensor).
 eh_equipamento(cajado_de_cristal, manto_de_sombra) :- eh_classe(mago), eh_build(anciao), arma(atacante).
 
-%armas assassino-------------------------------------------
-eh_equipamento(lanca_e_adagas, cota_de_malha) :- eh_classe(assassino), eh_build(de_ferro), arma(defensor).
-eh_equipamento(espada_e_adaga, cota_de_malha) :- eh_classe(assassino), eh_build(de_ferro), arma(atacante).
-eh_equipamento(katana_e_adaga, traje_de_seda_escura) :- eh_classe(assassino), eh_build(das_sombras), arma(defensor).
-eh_equipamento(adagas_nas_duas_maos, traje_de_seda_escura) :- eh_classe(assassino), eh_build(das_sombras), arma(atacante).
-eh_equipamento(adagas_e_zarabatana, manto_de_sombra) :- eh_classe(assassino), eh_build(oculto), arma(defensor).
-eh_equipamento(lanca_envenenada, manto_de_sombra) :- eh_classe(assassino), eh_build(oculto), arma(atacante).
-
 
 iniciar :- repeat,
     write("============Seletor_de_Classe==========="), nl,
@@ -92,7 +76,6 @@ pergunta_1 :-
     write("2. Com as proprias maos destroi o Dragon NullPointerException"), nl,
     write("3. Se acalma e telepaticamente entra em contato com o mago StackOverflow que te encontra a solucao"), nl,
     write("4. Voce utiliza uma habilidade especial e reduz o Dragon a cinzas"), nl,
-    write("5. O Dragon nao apareceria para voce pois voce nao anda em Javalovisk."), nl,
     write("========================================"), nl,
     read(X),
     opc_pergunta_1(X).
@@ -101,7 +84,6 @@ opc_pergunta_1(1) :- pergunta_2(inteligencia).
 opc_pergunta_1(2) :- pergunta_2(forca).
 opc_pergunta_1(3) :- pergunta_2(inteligencia).
 opc_pergunta_1(4) :- pergunta_2(forca).
-opc_pergunta_1(5) :- pergunta_2(destreza).
 
 pergunta_2(X) :-
     write("============Seletor_de_Classe==========="), nl,
@@ -120,7 +102,7 @@ opc_pergunta_2(X,3) :- assert(atributos(X,vitalidade)), nl, pergunta_build.
 opc_pergunta_2(X,4) :- assert(atributos(X,destreza)), nl, pergunta_build.
 
 pergunta_build :-
-    write("========Seletor_de_Especializacao======="), nl,
+    write("========Seletor_de_Especializacao========"), nl,
     write("Vosso amor se encontra em perigo no mundo da VidaSocial. O que voce como um dos integrantes da Orda da Sociedade Oculta de SofWar faz?"), nl,
     write("1. Seu amor nunca esta em perigo pois voce esta com ele."), nl,
     write("2. Sem que seu amor perceba o perigo ele eh destruido."), nl,
@@ -128,6 +110,17 @@ pergunta_build :-
     read(X),
     opc_build(X).
 
-opc_build(1) :- assert(build(defesa)), nl, eh_classe(X), eh_build(Y), write("Parabens voce eh um incrivel "), write(X), write(" "), write(Y), nl.
-opc_build(2) :- assert(build(agilidade)), nl, eh_classe(X), eh_build(Y), write("Parabens voce eh um incrivel "), write(X), write(" "), write(Y), nl.
-opc_build(3) :- assert(build(talento)), nl, eh_classe(X), eh_build(Y), write("Parabens voce eh um incrivel "), write(X), write(" "), write(Y), nl.
+opc_build(1) :- assert(build(defesa)), pergunta_equip, nl.
+opc_build(2) :- assert(build(agilidade)), pergunta_equip, nl.
+opc_build(3) :- assert(build(talento)), pergunta_equip, nl.
+
+pergunta_equip :-
+    write("==========Seletor_de_Equipamento========="), nl,
+    write("Antes de finalizar sua selecao e permitir seu ingresso na Sociedade Oculta de SofWar voce precisa fazer mais uma escolha:"), nl,
+    write("1. agua, gelo e terra"), nl,
+    write("2. fogo, vento e ferro"), nl,
+    read(X),
+    opc_equip(X).
+
+opc_equip(1) :- assert(arma(defensor)), nl, eh_classe(X), eh_build(Y), eh_equipamento(W,Z), write("Parabens voce eh um incrivel "), write(X), write(" "), write(Y), write(" e utiliza os equipamentos "), write(W), write(" e ") , write(Z), nl.
+opc_equip(2) :- assert(arma(atacante)), nl, eh_classe(X), eh_build(Y), eh_equipamento(W,Z), write("Parabens voce eh um incrivel "), write(X), write(" "), write(Y), write(" e utiliza os equipamentos "), write(W), write(" e ") , write(Z), nl.
