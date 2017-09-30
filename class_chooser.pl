@@ -224,9 +224,9 @@ pergunta_nome :-
 opc_nome(X) :- assert(nome(X)), conta_historia, nl.
 
 conta_historia :- eh_classe(Classe), eh_build(Build), eh_equipamento(EquipA, EquipB), dia(Dia), mes(Mes), cor(Cor), nome(Nome),
-    write("Esta eh a breve historia da vida de "), write(Nome), write(" o(a) "), write(Classe), write(" "), write(Build), write(": \n"),
-    write(Nome), write(" vivia em um pacato local chamado "), write(Mes), write(".\nViveu como uma pessoa comum durante uma boa parte de sua vida. Entretanto em um certo dia "),
-    write(Mes), write(" recebeu um poderoso ataque e acabou em ruinas. Tempos depois descobriu-se que o ataque veio d"), write(Cor), write("\nDesde entao "),
+    write("\n\nEsta eh a breve historia da vida de "), write(Nome), write(" o "), write(Classe), write(" "), write(Build), write(": \n\n"),
+    write(Nome), write(" vivia em um pacato local chamado "), write(Mes), write(".\nViveu como uma pessoa comum durante uma boa parte de sua vida. Entretanto em um certo dia\n"),
+    write(Mes), write(" recebeu um poderoso ataque e acabou em ruinas.\nTempos depois descobriu-se que o ataque veio d"), write(Cor), write(".\nDesde entao "),
     write(Nome), write(" passou a treinar buscando ingressar na Sociedade Oculta de SofWar!\n"), write("Sua missao inicial eh buscar "), write(Dia), write(" para trazer mais poder a SofWar e enfim destruir "),
-    write(Cor), write(".\n"), write("Seus equipamentos sao: "), write(EquipA), write(" e "), write(EquipB), write("!\n Boa sorte!"), nl.
+    write(Cor), write(".\n"), write("Seus equipamentos sao: "), write(EquipA), write(" e "), write(EquipB), write("!\n\n\t\tBoa sorte!"), nl.
 
