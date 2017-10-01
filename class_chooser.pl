@@ -1,11 +1,3 @@
-:- dynamic clearBase/1.
-:- dynamic clearBase1/1.
-
-clearBase(X):- clearBase1(X), fail.
-clearBase(X).
-clearBase1(X):- retract(X).
-clearBase1(X).
-
 %------------------classes------------------------------
 eh_classe(cavaleiro) :- atributos(forca, destreza).
 eh_classe(guerreiro) :- atributos(forca, vitalidade).
@@ -64,10 +56,8 @@ eh_equipamento(varinha_de_ferro, manto_de_mil_folhas) :- eh_classe(mago), eh_bui
 eh_equipamento(cajado_de_cristal, manto_de_luz) :- eh_classe(mago), eh_build(anciao), arma(defensor).
 eh_equipamento(cajado_de_cristal, manto_de_sombra) :- eh_classe(mago), eh_build(anciao), arma(atacante).
 
-limpar_registro :-
-    clearBase(eh_classe(Atributo1, Atributo2)).
 
-iniciar :- repeat,limpar_registro,
+iniciar :- repeat,
     write("============Seletor_de_Classe==========="), nl, nl,
     write("1. Vamos iniciar!"), nl,
     write("2. Me tire daqui!"), nl,
@@ -76,7 +66,6 @@ iniciar :- repeat,limpar_registro,
     opcao(X),
     X==2, !.
 
-opcao(2) :- !.
 opcao(1) :- pergunta_1.
 opcao(_) :- write("Desculpe! Digite uma opcao valida!"), nl.
 
@@ -251,4 +240,16 @@ conta_historia :- eh_classe(Classe), eh_build(Build), eh_equipamento(EquipA, Equ
     write(Nome), write(" vivia em um pacato local chamado "), write(Mes), write(".\nViveu como uma pessoa comum durante uma boa parte de sua vida. Entretanto em um certo dia\n"),
     write(Mes), write(" recebeu um poderoso ataque e acabou em ruinas.\nTempos depois descobriu-se que o ataque veio d"), write(Cor), write(".\nDesde entao "),
     write(Nome), write(" passou a treinar buscando ingressar na Sociedade Oculta de SofWar!\n"), write("Sua missao inicial eh buscar "), write(Dia), write(" para trazer mais poder a SofWar e enfim destruir "),
-    write(Cor), write(".\n"), write("Seus equipamentos sao: "), write(EquipA), write(" e "), write(EquipB), write("!\n\n\t\tBoa sorte!"), nl, nl, nl.
+    write(Cor), write(".\n"), write("Seus equipamentos sao: "), write(EquipA), write(" e "), write(EquipB), write("!\n\n\t\tBoa sorte!"), nl, nl, nl, reiniciar.
+
+reiniciar :- repeat,
+    write("===============Reiniciar?================"), nl, nl,
+    write("1. Reiniciar selecao"), nl,
+    write("2. Sair daqui!"), nl,
+    read(X),
+    write("========================================"), nl, nl,
+    opc_reiniciar(X),
+    X==2, !.
+
+opc_reiniciar(1) :- iniciar.
+opc_reiniciar(_) :- write("Desculpe! Digite uma opcao valida!"), nl.
