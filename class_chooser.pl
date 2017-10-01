@@ -75,8 +75,9 @@ iniciar :- repeat,clearBase(eh_classe(eh_build,eh_equipamento)),
 
 opcao(2) :- !.
 opcao(1) :- pergunta_1.
+opcao(_) :- write("Desculpe! Digite uma opcao valida!"), nl.
 
-pergunta_1 :-
+pergunta_1 :- repeat,
     write("============Seletor_de_Classe==========="), nl,
     write("Voce estava viajando pelas terras de Javalovisk e encontrou um Dragon NullPointerException. Então você:"), nl,
     write("1. Com muito odio explode a terra de Javalovisk com o poder da mente"), nl,
@@ -91,8 +92,9 @@ opc_pergunta_1(1) :- pergunta_2(inteligencia).
 opc_pergunta_1(2) :- pergunta_2(forca).
 opc_pergunta_1(3) :- pergunta_2(inteligencia).
 opc_pergunta_1(4) :- pergunta_2(forca).
+opc_pergunta_1(_) :- write("Desculpe! Digite uma opcao valida!"), nl.
 
-pergunta_2(X) :-
+pergunta_2(X) :- repeat,
     write("============Seletor_de_Classe==========="), nl,
     write("Voce encontrou o livro do mage ByShaQui e ao tentar fazer um feitico voce evocou o gnomo BahIhDu e ele invade seu computador! O que voce faz?"), nl,
     write("1. Converso com ele até me acostumar com sua presenca"), nl,
@@ -108,8 +110,9 @@ opc_pergunta_2(X,1) :- assert(atributos(X,vitalidade)), nl, pergunta_build.
 opc_pergunta_2(X,2) :- assert(atributos(X,destreza)), nl, pergunta_build.
 opc_pergunta_2(X,3) :- assert(atributos(X,vitalidade)), nl, pergunta_build.
 opc_pergunta_2(X,4) :- assert(atributos(X,destreza)), nl, pergunta_build.
+opc_pergunta_2(_,_) :- write("Desculpe! Digite uma opcao valida!"), nl.
 
-pergunta_build :-
+pergunta_build :- repeat,
     write("========Seletor_de_Especializacao========"), nl,
     write("Vosso amor se encontra em perigo no mundo da VidaSocial. O que voce como um dos integrantes da Orda da Sociedade Oculta de SofWar faz?"), nl,
     write("1. Seu amor nunca esta em perigo pois voce esta com ele."), nl,
@@ -122,8 +125,9 @@ pergunta_build :-
 opc_build(1) :- assert(build(defesa)), pergunta_equip, nl.
 opc_build(2) :- assert(build(agilidade)), pergunta_equip, nl.
 opc_build(3) :- assert(build(talento)), pergunta_equip, nl.
+opc_build(_)  :- write("Desculpe! Digite uma opcao valida!"), nl.
 
-pergunta_equip :-
+pergunta_equip :- repeat,
     write("==========Seletor_de_Equipamento========="), nl,
     write("Antes de finalizar sua selecao e permitir seu ingresso na Sociedade Oculta de SofWar voce precisa fazer mais uma escolha:"), nl,
     write("1. agua, gelo e terra"), nl,
@@ -134,8 +138,9 @@ pergunta_equip :-
 
 opc_equip(1) :- assert(arma(defensor)), pergunta_dia, nl.
 opc_equip(2) :- assert(arma(atacante)), pergunta_dia, nl.
+opc_equip(_)  :- write("Desculpe! Digite uma opcao valida!"), nl.
 
-pergunta_dia :-
+pergunta_dia :- repeat,
     write("==========Seletor_de_Historia============"), nl,
     write("Por gentileza escolha um dia de 1 a 31"), nl,
     read(X),
@@ -173,8 +178,9 @@ opc_dia(28) :- assert(dia(o_Orbe_da_Destreza)), pergunta_mes, nl.
 opc_dia(29) :- assert(dia(o_Berrante_dos_Gigantes)), pergunta_mes, nl.
 opc_dia(30) :- assert(dia(a_Katana_do_Destino)), pergunta_mes, nl.
 opc_dia(31) :- assert(dia(o_Machado_Anciao_de_Assis)), pergunta_mes, nl.
+opc_dia(_)  :- write("Desculpe! Digite uma opcao valida!"), nl.
 
-pergunta_mes :-
+pergunta_mes :- repeat,
     write("==========Seletor_de_Historia============"), nl,
     write("Por gentileza escolha um mes de 1 a 12"), nl,
     read(X),
@@ -193,8 +199,9 @@ opc_mes(9) :- assert(mes(a_Capital_do_Ferro_Vermelho)), pergunta_cor, nl.
 opc_mes(10) :- assert(mes(o_Nascer_do_Tita)), pergunta_cor, nl.
 opc_mes(11) :- assert(mes(o_Castelo_da_Sabedoria)), pergunta_cor, nl.
 opc_mes(12) :- assert(mes(a_Fortaleza_de_Esmeralda)), pergunta_cor, nl.
+opc_mes(_)  :- write("Desculpe! Digite uma opcao valida!"), nl.
 
-pergunta_cor :-
+pergunta_cor :- repeat,
     write("==========Seletor_de_Historia============"), nl,
     write("Por gentileza escolha uma destas cores"), nl,
     write("1. branco"), nl,
@@ -213,6 +220,7 @@ opc_cor(3) :- assert(cor(o_Traidor_dos_Mares_de_Cristal)), pergunta_nome, nl.
 opc_cor(4) :- assert(cor(o_Cavaleiro_sem_Honra)), pergunta_nome, nl.
 opc_cor(5) :- assert(cor(o_Rei_dos_Gigantes)), pergunta_nome, nl.
 opc_cor(6) :- assert(cor(o_Gnomo_Corrompido)), pergunta_nome, nl.
+opc_cor(_)  :- write("Desculpe! Digite uma opcao valida!"), nl.
 
 pergunta_nome :-
     write("==========Seletor_de_Historia============"), nl,
@@ -223,7 +231,7 @@ pergunta_nome :-
 
     opc_nome(X) :- assert(nome(X)), pergunta_formato, nl.
 
-pergunta_formato :-
+pergunta_formato :- repeat,
   write("==========Seletor_de_Formato============"), nl,
   write("Voce gostaria de sua historia escrita em um arquivo ou apenas printada na tela"), nl,
   write("Por gentileza escolha entre esses dois formatos"), nl,
@@ -234,8 +242,6 @@ pergunta_formato :-
   opc_formato(X).
 
 opc_formato(1) :- assert(formato(X)), conta_historia, nl.
-opc_formato(2) :-fcreate(arq,'\.saida.pl').
-yes.
 
 
 conta_historia :- eh_classe(Classe), eh_build(Build), eh_equipamento(EquipA, EquipB), dia(Dia), mes(Mes), cor(Cor), nome(Nome),
