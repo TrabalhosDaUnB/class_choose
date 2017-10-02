@@ -244,22 +244,10 @@ pergunta_nome :-
     write("========================================"), nl, nl,
     opc_nome(X).
 
-    opc_nome(X) :- assert(nome(X)), pergunta_formato.
-
-pergunta_formato :-
-  write("==========Seletor_de_Formato============"), nl, nl,
-  write("Voce gostaria de sua historia escrita em um arquivo ou apenas printada na tela"), nl,
-  write("Por gentileza escolha entre esses dois formatos"), nl,
-  write("1. Tela"), nl,
-  write("2. Arquivo Texto"), nl,
-  read(X),
-  write("========================================"), nl, nl,
-  opc_formato(X).
-
-opc_formato(1) :- assert(formato(X)), conta_historia.
+    opc_nome(X) :- assert(nome(X)), conta_historia_tela.
 
 
-conta_historia :- eh_classe(Classe), eh_build(Build), eh_equipamento(EquipA, EquipB), dia(Dia), mes(Mes), cor(Cor), nome(Nome),nl,nl,
+conta_historia_tela :- eh_classe(Classe), eh_build(Build), eh_equipamento(EquipA, EquipB), dia(Dia), mes(Mes), cor(Cor), nome(Nome),nl,nl,
     write("\n\nEsta eh a breve historia da vida de "), write(Nome), write(" o "), write(Classe), write(" "), write(Build), write(": \n\n"),
     write(Nome), write(" vivia em um pacato local chamado "), write(Mes), write(".\nViveu como uma pessoa comum durante uma boa parte de sua vida. Entretanto em um certo dia\n"),
     write(Mes), write(" recebeu um poderoso ataque e acabou em ruinas.\nTempos depois descobriu-se que o ataque veio d"), write(Cor), write(".\nDesde entao "),
