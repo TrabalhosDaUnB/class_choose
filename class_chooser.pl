@@ -86,7 +86,7 @@ eh_equipamento(cajado_de_cristal, manto_de_luz) :- eh_classe(mago), eh_build(anc
 eh_equipamento(cajado_de_cristal, manto_de_sombra) :- eh_classe(mago), eh_build(anciao), arma(atacante).
 
 
-iniciar :-
+iniciar :- limpa_base, 
     write("============Seletor_de_Classe==========="), nl, nl,
     write("1. Vamos iniciar!"), nl,
     write("2. Me tire daqui!"), nl,
